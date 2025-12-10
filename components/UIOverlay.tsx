@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { CelestialBody, NasaImage } from '../types';
-import { Search, Info, ImageIcon, X, ChevronRight, Activity } from 'lucide-react';
+import { Search, Info, ImageIcon, X, ChevronRight, Activity, ClipboardCheck } from 'lucide-react';
 
 interface UIOverlayProps {
   selectedBody: CelestialBody | null;
@@ -48,18 +49,33 @@ export const UIOverlay: React.FC<UIOverlayProps> = ({
         </div>
       </div>
 
-      {/* 2. BOTTOM TIP */}
+      {/* 2. BOTTOM LEFT - EVALUATION LINK */}
+      <div className="pointer-events-auto absolute bottom-6 left-6 z-50">
+        <a 
+          href="https://docs.google.com/forms/d/1hoOwGUWgnzvu2RTdJDNUJ8fto7HmVGCexmfIFyQnjvk/edit?usp=drive_web&ouid=110270243851487035168"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 px-5 py-3 bg-cyan-900/20 hover:bg-cyan-500/20 border border-cyan-500/30 backdrop-blur-md rounded-full transition-all duration-300 group shadow-[0_0_15px_rgba(0,255,255,0.1)] hover:shadow-[0_0_25px_rgba(0,255,255,0.3)]"
+        >
+          <ClipboardCheck size={18} className="text-cyan-400 group-hover:text-white transition-colors" />
+          <span className="text-xs font-light text-cyan-100 uppercase tracking-widest group-hover:text-white transition-colors">
+            Proje Değerlendirmesine Katılın
+          </span>
+        </a>
+      </div>
+
+      {/* 3. CENTER BOTTOM TIP */}
       {!selectedBody && (
-        <div className="text-center mb-10 animate-pulse">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center animate-pulse pointer-events-none">
            <p className="text-cyan-500/50 text-xs tracking-[0.4em] uppercase">
              Keşfetmek için bir cisme tıklayın
            </p>
         </div>
       )}
 
-      {/* 3. SIDE PANEL - INFO CARD */}
+      {/* 4. SIDE PANEL - INFO CARD */}
       {selectedBody && (
-        <div className="absolute top-0 right-0 w-full md:w-[450px] h-full bg-[#050a14]/80 backdrop-blur-xl border-l border-white/10 pointer-events-auto flex flex-col transition-transform duration-500 ease-out shadow-2xl">
+        <div className="absolute top-0 right-0 w-full md:w-[450px] h-full bg-[#050a14]/80 backdrop-blur-xl border-l border-white/10 pointer-events-auto flex flex-col transition-transform duration-500 ease-out shadow-2xl z-40">
            
            {/* Header Image (NASA or Color Placeholder) */}
            <div className="relative h-48 w-full overflow-hidden shrink-0 bg-black">
